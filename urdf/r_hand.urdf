@@ -1,0 +1,479 @@
+<?xml version="1.0"?>
+<robot name="hek">
+
+  <link name="world"/>
+
+
+
+
+  <link name="r_palm">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/r_palm.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_wrist_z" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="r_palm"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" velocity="1.0" lower="-0.65" upper="0.65" />
+  </joint>
+
+  <link name="r_thumb_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/r_thumb_joint.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_thumb_joint_x" type="revolute">
+    <origin xyz="0.0417 0.0291 -0.0057" rpy="0 0 0"/>
+    <parent link="r_palm"/>
+    <child link="r_thumb_joint"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="100" velocity="1.0" lower="0.1" upper="2" />
+  </joint>
+
+  <link name="r_thumb1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Thumb1.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_thumb" type="revolute">
+    <origin xyz="0.0068 0.019 0" rpy="-0.3 0.0 1.06"/>
+    <parent link="r_thumb_joint"/>
+    <child link="r_thumb1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0" lower="0" upper="1.4" />
+  </joint>
+
+  <link name="r_thumb2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Thumb2.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_thumb1_2" type="revolute">
+    <origin xyz="0.021 0 0" rpy="0 0 0"/>
+    <parent link="r_thumb1"/>
+    <child link="r_thumb2"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_thumb" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0" upper="1.4" />
+  </joint>
+
+  <link name="r_index_finger_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/finger_joint.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_fingers_z" type="revolute">
+    <origin xyz="0.06512 0.0225 0.0051" rpy="0 0 0"/>
+    <parent link="r_palm"/>
+    <child link="r_index_finger_joint"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="100" velocity="1.0" lower="-0.25" upper="0.15" />
+  </joint>
+
+  <link name="r_index1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Index1.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_index" type="revolute">
+    <origin xyz="0.0115 0 -0.0005" rpy="0 0 0"/>
+    <parent link="r_index_finger_joint"/>
+    <child link="r_index1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_index2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Index2.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_index1_2" type="revolute">
+    <origin xyz="0.022 0 0" rpy="0 0 0"/>
+    <parent link="r_index1"/>
+    <child link="r_index2"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_index" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_index3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Index3.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_index2_3" type="revolute">
+    <origin xyz="0.0146 0 0" rpy="0 0 0"/>
+    <parent link="r_index2"/>
+    <child link="r_index3"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_index" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_middle_finger_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/finger_joint.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_midlle_z" type="fixed">
+    <origin xyz="0.0665 0.00733 0.0051" rpy="0 0 0"/>
+    <parent link="r_palm"/>
+    <child link="r_middle_finger_joint"/>
+  </joint>
+
+
+
+
+
+
+  <link name="r_middle1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Majeure1.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_middle" type="revolute">
+    <origin xyz="0.0115 0 -0.0005" rpy="0 0 0"/>
+    <parent link="r_middle_finger_joint"/>
+    <child link="r_middle1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_middle2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Majeure2.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_middle1_2" type="revolute">
+    <origin xyz="0.023 0 0" rpy="0 0 0"/>
+    <parent link="r_middle1"/>
+    <child link="r_middle2"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_middle" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_middle3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Majeure3.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_middle2_3" type="revolute">
+    <origin xyz="0.0155 0 0" rpy="0 0 0"/>
+    <parent link="r_middle2"/>
+    <child link="r_middle3"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_middle" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+
+
+  <link name="r_ring_finger_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/finger_joint.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_ring_z" type="revolute">
+    <origin xyz="0.064 -0.00747 0.0051" rpy="0 0 0"/>
+    <parent link="r_palm"/>
+    <child link="r_ring_finger_joint"/>
+    <axis xyz="0 0 -1"/>
+    <mimic joint="r_fingers_z" multiplier="-1"/>
+    <limit effort="100" velocity="1.0" lower="-0.4" upper="0.2" />
+  </joint>
+
+
+
+    <link name="r_ring1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/RingFinger1.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_ring" type="revolute">
+    <origin xyz="0.0115 0 -0.0005" rpy="0 0 0"/>
+    <parent link="r_ring_finger_joint"/>
+    <child link="r_ring1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_ring2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/RingFinger2.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_ring1_2" type="revolute">
+    <origin xyz="0.021 0 0" rpy="0 0 0"/>
+    <parent link="r_ring1"/>
+    <child link="r_ring2"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_ring" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_ring3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/RingFinger3.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_ring2_3" type="revolute">
+    <origin xyz="0.014 0 0" rpy="0 0 0"/>
+    <parent link="r_ring2"/>
+    <child link="r_ring3"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_ring" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+
+
+
+  <link name="r_auri_finger_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/finger_joint.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_auri_z" type="revolute">
+    <origin xyz="0.05918 -0.02225 0.0051" rpy="0 0 0"/>
+    <parent link="r_palm"/>
+    <child link="r_auri_finger_joint"/>
+    <axis xyz="0 0 -1"/>
+    <mimic joint="r_fingers_z" multiplier="-1.5"/>
+    <limit effort="100" velocity="1.0" lower="-0.4" upper="0.2" />
+  </joint>
+
+
+  <link name="r_auri1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Auriculaire1.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_auri" type="revolute">
+    <origin xyz="0.0115 0 -0.0005" rpy="0 0 0"/>
+    <parent link="r_auri_finger_joint"/>
+    <child link="r_auri1"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_auri2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Auriculaire2.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_auri1_2" type="revolute">
+    <origin xyz="0.019 0 0" rpy="0 0 0"/>
+    <parent link="r_auri1"/>
+    <child link="r_auri2"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_auri" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+  <link name="r_auri3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cs2r_desc/stl/Auriculaire3.STL"
+              scale="0.001 0.001 0.001"
+        />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="r_auri2_3" type="revolute">
+    <origin xyz="0.0125 0 0" rpy="0 0 0"/>
+    <parent link="r_auri2"/>
+    <child link="r_auri3"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="r_auri" multiplier="1"/>
+    <limit effort="100" velocity="1.0" lower="0.0" upper="1.5" />
+  </joint>
+
+
+
+
+
+
+
+
+</robot>
+
